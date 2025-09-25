@@ -50,8 +50,7 @@ library(ggcorrplot) # para correlogramas
 library(AER) # para datos
 library(hexbin) # para grafico de dispersión con intesidad por color
 
-lirios <- iris[c(1:10,51:60,101:110),]
-lirios
+datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 ```
 
 
