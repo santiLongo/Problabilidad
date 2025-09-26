@@ -1,6 +1,6 @@
 ---
 title: "Probabilidad"
-author: "Santiago"
+author: "Santiago Longo y Rocco Fabro"
 date: "2025-09-25"
 output: html_document
 ---
@@ -49,7 +49,7 @@ library(pyramid) # para pirámide poblacional
 library(ggcorrplot) # para correlogramas
 library(AER) # para datos
 library(hexbin) # para grafico de dispersión con intesidad por color
-library(wordcloud)
+library(wordcloud) #Nube de palabras
 library(RColorBrewer)
 
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
@@ -99,4 +99,18 @@ hist(x, breaks = 20, probability = TRUE,
 # Agregar la curva normal ajustada
 curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
       col = "blue", lwd = 2, add = TRUE)
+```
+```{r}
+data_mood <- datos %>%
+  group_by(Mood) %>%
+  summarise(promedio_exercise = mean(Exercise..mins., na.rm = TRUE))
+```
+
+```{r}
+ggplot(data_mood, aes(x = Mood, y = promedio_exercise, fill = Mood)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Promedio de minutos de ejercicio por estado de ánimo",
+       x = "Mood",
+       y = "Promedio de Exercise (mins)") +
+  theme_minimal()
 ```
