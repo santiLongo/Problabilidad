@@ -49,6 +49,8 @@ library(pyramid) # para pirámide poblacional
 library(ggcorrplot) # para correlogramas
 library(AER) # para datos
 library(hexbin) # para grafico de dispersión con intesidad por color
+library(wordcloud)
+library(RColorBrewer)
 
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 datos
@@ -74,4 +76,27 @@ data <- datos %>%
 pie(data$n,
     labels = data$Breakfast.Type,
     main = "Tipos de Desayunos")
+```
+
+```{r}
+data <- datos %>%
+          count(Mood)
+
+wordcloud(words = data$Mood,
+          freq  = data$n,
+          random.order = FALSE,
+          colors = brewer.pal(8, "Dark2"))
+```
+
+```{r}
+x <- datos$Exercise..mins.
+
+# Histograma de densidad
+hist(x, breaks = 20, probability = TRUE,
+     main = "Distribución de minutos de ejercicio",
+     xlab = "Exercise (mins)", col = "lightgray")
+
+# Agregar la curva normal ajustada
+curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
+      col = "blue", lwd = 2, add = TRUE)
 ```
