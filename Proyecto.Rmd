@@ -52,6 +52,7 @@ library(hexbin) # para grafico de dispersión con intesidad por color
 library(wordcloud) #Nube de palabras
 library(RColorBrewer)
 
+
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 datos
 ```
@@ -101,16 +102,14 @@ curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
       col = "blue", lwd = 2, add = TRUE)
 ```
 ```{r}
-data_mood <- datos %>%
-  group_by(Mood) %>%
-  summarise(promedio_exercise = mean(Exercise..mins., na.rm = TRUE))
+datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 ```
 
 ```{r}
-ggplot(data_mood, aes(x = Mood, y = promedio_exercise, fill = Mood)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Promedio de minutos de ejercicio por estado de ánimo",
-       x = "Mood",
-       y = "Promedio de Exercise (mins)") +
+ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
+  geom_violin(trim = FALSE) +  # Muestra la densidad de los datos
+  labs(title = "Distribución de minutos de ejercicio por estado de ánimo",
+       x = "Estado de Ánimo",
+       y = "Minutos de Ejercicio") +
   theme_minimal()
 ```
