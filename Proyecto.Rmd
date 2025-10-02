@@ -81,11 +81,11 @@ pie(data$n,
 
 ```{r}
 data <- datos %>%
-          count(Mood)
+          count(Favourite.Exercise)
 
-wordcloud(words = data$Mood,
+wordcloud(words = data$Favourite.Exercise,
           freq  = data$n,
-          random.order = FALSE,
+          random.order = TRUE,
           colors = brewer.pal(8, "Dark2"))
 ```
 
@@ -101,9 +101,6 @@ hist(x, breaks = 20, probability = TRUE,
 curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
       col = "blue", lwd = 2, add = TRUE)
 ```
-```{r}
-datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
-```
 
 ```{r}
 ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
@@ -112,4 +109,25 @@ ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
        x = "Estado de Ánimo",
        y = "Minutos de Ejercicio") +
   theme_minimal()
+```
+
+```{r}
+data <- datos %>%
+  group_by(Sleep.Duration..hrs.) %>%
+  summarise(promedio_productividad = mean(Productivity.Score..1.10., na.rm = TRUE))
+
+ggplot(data, aes(x = Sleep.Duration..hrs., y = promedio_productividad)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(
+    title = "Productividad promedio por horas de suenio",
+    x = "Horas de suenio",
+    y = "Productividad promedia"
+  ) +
+  theme_minimal() 
+```
+
+
+```{r}
+
 ```
