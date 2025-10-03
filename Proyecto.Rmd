@@ -51,6 +51,7 @@ library(AER) # para datos
 library(hexbin) # para grafico de dispersión con intesidad por color
 library(wordcloud) #Nube de palabras
 library(RColorBrewer)
+library(wordcloud2)
 
 
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
@@ -83,10 +84,10 @@ pie(data$n,
 data <- datos %>%
           count(Favourite.Exercise)
 
-wordcloud(words = data$Favourite.Exercise,
-          freq  = data$n,
-          random.order = TRUE,
-          colors = brewer.pal(8, "Dark2"))
+wordcloud2(
+  data=data, size = 0.4, shape = "star"
+)
+
 ```
 
 ```{r}
