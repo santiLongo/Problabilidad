@@ -34,20 +34,7 @@ library(wordcloud2)
 
 
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
-datos
-```
 
-
-```{r}
-datos %>%
-  filter(Exercise..mins. > 30) %>%
-  arrange(Exercise..mins.)
-```
-
-```{r}
-data <- datos %>%
-          count(Breakfast.Type)
-data
 ```
 
 ```{r}
