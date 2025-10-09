@@ -9,27 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
 ```{r pressure,warning=FALSE, cache=FALSE, message=FALSE}
 library(dplyr)
 library(tidyverse)
@@ -77,15 +56,67 @@ data <- datos %>%
 
 pie(data$n,
     labels = data$Breakfast.Type,
-    main = "Tipos de Desayunos")
+    main = "Tipos de Desayunos",
+radius = 1)
+
 ```
 
 ```{r}
-data <- datos %>%
+
+datos_dona <- datos %>%
+  group_by(Breakfast.Type) %>%
+  summarise(valor = n()) %>%
+  ungroup()
+
+datos_dona <- datos_dona %>%
+  mutate(
+    porcentaje = valor / sum(valor),
+    etiqueta = paste0(round(porcentaje * 100), "%"),
+    posicion = cumsum(porcentaje) - porcentaje / 2
+  )
+
+tamano_agujero <- 4
+
+datos_dona <- datos_dona %>%
+  mutate(x = tamano_agujero)
+
+grafico_dona <- ggplot(datos_dona, aes(x = tamano_agujero, y = valor, fill = Breakfast.Type)) +
+  # Crear las barras (segmentos de la dona)
+  geom_col(width = 1, color = "white") +
+  
+  # Transformar a coordenadas polares
+  coord_polar(theta = "y") +
+  
+  # Agregar las etiquetas de porcentaje
+  geom_text(aes(x = tamano_agujero * 1.3, y = cumsum(valor) - valor / 2, label = etiqueta), size = 5) +
+  
+  # Limitar el eje x para crear el agujero
+  xlim(c(0.2, tamano_agujero + 0.5)) +
+  
+  # Mejorar el tema y quitar elementos innecesarios
+  theme_void() +
+  theme(
+    legend.position = "right",
+    legend.text = element_text(size = 12),
+    legend.title = element_blank(),
+    plot.title = element_text(hjust = 0.5, size = 18)
+  ) +
+  
+  # Añadir un título
+  labs(title = "Distribución de tipos de desayuno")
+
+# Mostrar el gráfico
+print(grafico_dona)
+
+
+```
+
+```{r}
+data <- datos%>%
           count(Favourite.Exercise)
 
 wordcloud2(
-  data=data, size = 0.4, shape = "star"
+  data=data, size = 0.4
 )
 
 ```
