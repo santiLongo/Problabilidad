@@ -54,16 +54,6 @@ datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
 ```
 
-```{r}
-data <- datos %>%
-          count(Breakfast.Type)
-
-pie(data$n,
-    labels = data$Breakfast.Type,
-    main = "Tipos de Desayunos",
-radius = 1)
-
-```
 
 ```{r}
 
