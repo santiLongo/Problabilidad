@@ -132,7 +132,7 @@ grafico_dona <- ggplot(datos_dona, aes(x = tamano_agujero, y = valor, fill = Bre
   ) +
   
   # Añadir un título
-  labs(title = "   Distribución de tipos de desayuno")
+  labs(title = "  Distribucion de tipos de desayuno")
 
 # Mostrar el gráfico
 print(grafico_dona)
@@ -169,7 +169,7 @@ x <- datos$Exercise..mins.
 
 # Histograma de densidad
 hist(x, breaks = 20, probability = TRUE,
-     main = "Distribución de minutos de ejercicio",
+     main = "Distribucion de minutos de ejercicio",
      xlab = "Exercise (mins)", col = "lightgray")
 
 # Agregar la curva normal ajustada
@@ -187,10 +187,11 @@ El gráfico de violín permite observar cómo varía la cantidad de ejercicio se
 ```{r}
 ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
   geom_violin(trim = FALSE) +  # Muestra la densidad de los datos
-  labs(title = "Distribución de minutos de ejercicio por estado de ánimo",
-       x = "Estado de Ánimo",
+  labs(title = "Distribucion de minutos de ejercicio por estado de animo",
+       x = "Estado de Animo",
        y = "Minutos de Ejercicio") +
   theme_minimal()
+
 ```
 
 ## Análisis:
@@ -209,8 +210,8 @@ ggplot(data, aes(x = Sleep.Duration..hrs., y = promedio_productividad)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   labs(
-    title = "Productividad promedio por horas de sueño",
-    x = "Horas de sueño",
+    title = "Productividad promedio por horas de suenio",
+    x = "Horas de suenio",
     y = "Productividad promedia"
   ) +
   theme_minimal() 
