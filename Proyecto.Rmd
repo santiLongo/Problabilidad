@@ -132,7 +132,7 @@ grafico_dona <- ggplot(datos_dona, aes(x = tamano_agujero, y = valor, fill = Bre
   ) +
   
   # Añadir un título
-  labs(title = "Distribución de tipos de desayuno")
+  labs(title = "   Distribución de tipos de desayuno")
 
 # Mostrar el gráfico
 print(grafico_dona)
