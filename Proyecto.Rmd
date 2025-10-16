@@ -5,155 +5,53 @@ date: "2025-09-25"
 output: html_document
 ---
 
-Borrar esto al terminar:
-Caratula,
-Indice,
-Introduccion,
-Objetivo(Analizar),
-Antes de cada grafico una descripcion,
-Analisis de cada grafico,
-Conclusion,
-Bibliografia
+# Carátula
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,
-                      warning = FALSE,
-                      message = FALSE)
-```
-### Tipos de Rutinas Matutinas y como impacta en la vida de la gente
+**Materia:** Probabilidad Aplicada  
+**Autores:** Santiago Longo y Rocco Fabro  
+**Fecha:** 25 de septiembre de 2025  
+**Institución:** Instituto Nacional Superior del Profesorado Tecnico  
+**Profesor:** Marisa Casparian
 
-### Graficos a analizar:
-#### Grafico de torta.
+---
 
+# Índice
+
+1. Introducción  
+2. Objetivo del estudio  
+3. Análisis estadístico  
+   - 3.1 Distribución de tipos de desayuno  
+   - 3.2 Actividades físicas más frecuentes  
+   - 3.3 Distribución de minutos de ejercicio  
+   - 3.4 Ejercicio físico según estado de ánimo  
+   - 3.5 Productividad según horas de sueño  
+4. Conclusión  
+5. Bibliografía  
+
+---
+
+# Introducción
+
+En la vida moderna, las rutinas matutinas desempeñan un papel fundamental en el bienestar y la productividad de las personas. Desde los hábitos alimenticios hasta el ejercicio físico y las horas de descanso, cada aspecto influye directamente en el rendimiento diario y el estado de ánimo general.
+
+El presente informe tiene como propósito analizar diferentes componentes de la rutina matutina —como el tipo de desayuno, la cantidad de ejercicio o la duración del sueño— para determinar cómo se relacionan con el estado de ánimo y la productividad percibida por los individuos.
+
+Para ello, se trabaja con el conjunto de datos **“Morning Routine Productivity Dataset”**, que contiene información de diversas personas sobre sus hábitos matutinos, ejercicio físico, sueño, tipo de desayuno y productividad.
+
+---
+
+# Objetivo
+
+El objetivo principal de este estudio es **analizar la influencia de las rutinas matutinas en la productividad y el estado de ánimo de las personas**.  
+A partir de los datos recolectados, se busca identificar patrones y correlaciones que permitan comprender qué hábitos se asocian con un mejor rendimiento o bienestar general.
+
+---
+
+# Análisis estadístico
+
+## 3.1 Distribución de tipos de desayuno
+
+Antes de analizar la productividad, se estudió la **distribución de los distintos tipos de desayuno** declarados por los participantes. Este gráfico permite observar la preferencia general en las comidas matutinas, las cuales pueden tener un impacto directo en los niveles de energía y concentración.
 
 ```{r pressure,warning=FALSE, cache=FALSE, message=FALSE}
-
-library(dplyr)
-library(tidyverse)
-library(DT)
-library(kableExtra)
-library(ggplot2)
-library(RColorBrewer)
-library(ggthemes)  # estilos de gráficos
-library(ggrepel)   # etiquetas de texto más prolijas que las de ggplot
-library(scales)    # tiene la función 'percent()'
-library(gganimate) # Para hacer gráficos animados.
-library(ggridges) # Para hacer gráficos de densidad faceteados
-library(GGally) # Para hacer varios gráficos juntos.
-library(cowplot)  #Para unir gráficos generados por ggplot2
-library(forcats)  #Para reordenar factores
-library(pyramid) # para pirámide poblacional
-library(ggcorrplot) # para correlogramas
-library(AER) # para datos
-library(hexbin) # para grafico de dispersión con intesidad por color
-library(wordcloud) #Nube de palabras
-library(RColorBrewer)
-library(wordcloud2)
-
-datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
-
-```
-
-
-```{r}
-
-datos_dona <- datos %>%
-  group_by(Breakfast.Type) %>%
-  summarise(valor = n()) %>%
-  ungroup()
-
-datos_dona <- datos_dona %>%
-  mutate(
-    porcentaje = valor / sum(valor),
-    etiqueta = paste0(round(porcentaje * 100), "%"),
-    posicion = cumsum(porcentaje) - porcentaje / 2
-  )
-
-tamano_agujero <- 4
-
-datos_dona <- datos_dona %>%
-  mutate(x = tamano_agujero)
-
-grafico_dona <- ggplot(datos_dona, aes(x = tamano_agujero, y = valor, fill = Breakfast.Type)) +
-  # Crear las barras (segmentos de la dona)
-  geom_col(width = 1, color = "white") +
-  
-  # Transformar a coordenadas polares
-  coord_polar(theta = "y") +
-  
-  # Agregar las etiquetas de porcentaje
-  geom_text(aes(x = tamano_agujero * 1.3, y = cumsum(valor) - valor / 2, label = etiqueta), size = 5) +
-  
-  # Limitar el eje x para crear el agujero
-  xlim(c(0.2, tamano_agujero + 0.5)) +
-  
-  # Mejorar el tema y quitar elementos innecesarios
-  theme_void() +
-  theme(
-    legend.position = "right",
-    legend.text = element_text(size = 12),
-    legend.title = element_blank(),
-    plot.title = element_text(hjust = 0.5, size = 18)
-  ) +
-  
-  # Añadir un título
-  labs(title = "Distribución de tipos de desayuno")
-
-# Mostrar el gráfico
-print(grafico_dona)
-
-
-```
-
-```{r}
-data <- datos%>%
-          count(Favourite.Exercise)
-
-wordcloud2(
-  data=data, size = 0.4
-)
-
-```
-
-```{r}
-x <- datos$Exercise..mins.
-
-# Histograma de densidad
-hist(x, breaks = 20, probability = TRUE,
-     main = "Distribución de minutos de ejercicio",
-     xlab = "Exercise (mins)", col = "lightgray")
-
-# Agregar la curva normal ajustada
-curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
-      col = "blue", lwd = 2, add = TRUE)
-```
-
-```{r}
-ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
-  geom_violin(trim = FALSE) +  # Muestra la densidad de los datos
-  labs(title = "Distribución de minutos de ejercicio por estado de ánimo",
-       x = "Estado de Ánimo",
-       y = "Minutos de Ejercicio") +
-  theme_minimal()
-```
-
-```{r}
-data <- datos %>%
-  group_by(Sleep.Duration..hrs.) %>%
-  summarise(promedio_productividad = mean(Productivity.Score..1.10., na.rm = TRUE))
-
-ggplot(data, aes(x = Sleep.Duration..hrs., y = promedio_productividad)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(
-    title = "Productividad promedio por horas de suenio",
-    x = "Horas de suenio",
-    y = "Productividad promedia"
-  ) +
-  theme_minimal() 
-```
-
-
-```{r}
-
-```
+# (Gráfico de dona - ya incluido)
