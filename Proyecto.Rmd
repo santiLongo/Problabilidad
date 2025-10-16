@@ -1,15 +1,33 @@
 ---
-title: "Probabilidad"
+title: "Probabilidad Aplicada"
 author: "Santiago Longo y Rocco Fabro"
 date: "2025-09-25"
 output: html_document
 ---
 
+Borrar esto al terminar:
+Caratula,
+Indice,
+Introduccion,
+Objetivo(Analizar),
+Antes de cada grafico una descripcion,
+Analisis de cada grafico,
+Conclusion,
+Bibliografia
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
 ```
+### Tipos de Rutinas Matutinas y como impacta en la vida de la gente
+
+### Graficos a analizar:
+#### Grafico de torta.
+
 
 ```{r pressure,warning=FALSE, cache=FALSE, message=FALSE}
+
 library(dplyr)
 library(tidyverse)
 library(DT)
@@ -31,7 +49,6 @@ library(hexbin) # para grafico de dispersión con intesidad por color
 library(wordcloud) #Nube de palabras
 library(RColorBrewer)
 library(wordcloud2)
-
 
 datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
