@@ -19,15 +19,15 @@ library(DT)
 library(kableExtra)
 library(ggplot2)
 library(RColorBrewer)
-library(ggthemes)  # estilos de gráficos
-library(ggrepel)   # etiquetas de texto más prolijas que las de ggplot
+library(ggthemes)  # estilos de graficos
+library(ggrepel)   # etiquetas de texto mas prolijas que las de ggplot
 library(scales)    # tiene la función 'percent()'
-library(gganimate) # Para hacer gráficos animados.
-library(ggridges) # Para hacer gráficos de densidad faceteados
-library(GGally) # Para hacer varios gráficos juntos.
-library(cowplot)  #Para unir gráficos generados por ggplot2
+library(gganimate) # Para hacer graficos animados.
+library(ggridges) # Para hacer graficos de densidad faceteados
+library(GGally) # Para hacer varios graficos juntos.
+library(cowplot)  #Para unir graficos generados por ggplot2
 library(forcats)  #Para reordenar factores
-library(pyramid) # para pirámide poblacional
+library(pyramid) # para piramide poblacional
 library(ggcorrplot) # para correlogramas
 library(AER) # para datos
 library(hexbin) # para grafico de dispersión con intesidad por color
@@ -39,7 +39,7 @@ datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
 ```
 
-# Carátula
+# Caratula
 
 **Materia:** Probabilidad Aplicada  
 **Autores:** Santiago Longo y Rocco Fabro  
@@ -53,39 +53,39 @@ datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
 1. Introducción  
 2. Objetivo del estudio  
-3. Análisis estadístico  
+3. Analisis estadístico  
    - 3.1 Distribución de tipos de desayuno  
-   - 3.2 Actividades físicas más frecuentes  
+   - 3.2 Actividades físicas mas frecuentes  
    - 3.3 Distribución de minutos de ejercicio  
-   - 3.4 Ejercicio físico según estado de ánimo  
+   - 3.4 Ejercicio físico según estado de animo  
    - 3.5 Productividad según horas de sueño  
 4. Conclusión  
 5. Bibliografía  
 
 ---
 
-# Introducción
+# 1.Introducción
 
-En la vida moderna, las rutinas matutinas desempeñan un papel fundamental en el bienestar y la productividad de las personas. Desde los hábitos alimenticios hasta el ejercicio físico y las horas de descanso, cada aspecto influye directamente en el rendimiento diario y el estado de ánimo general.
+En la vida moderna, las rutinas matutinas desempeñan un papel fundamental en el bienestar y la productividad de las personas. Desde los habitos alimenticios hasta el ejercicio físico y las horas de descanso, cada aspecto influye directamente en el rendimiento diario y el estado de animo general.
 
-El presente informe tiene como propósito analizar diferentes componentes de la rutina matutina —como el tipo de desayuno, la cantidad de ejercicio o la duración del sueño— para determinar cómo se relacionan con el estado de ánimo y la productividad percibida por los individuos.
+El presente informe tiene como propósito analizar diferentes componentes de la rutina matutina —como el tipo de desayuno, la cantidad de ejercicio o la duración del sueño— para determinar cómo se relacionan con el estado de animo y la productividad percibida por los individuos.
 
-Para ello, se trabaja con el conjunto de datos **“Morning Routine Productivity Dataset”**, que contiene información de diversas personas sobre sus hábitos matutinos, ejercicio físico, sueño, tipo de desayuno y productividad.
-
----
-
-# Objetivo
-
-El objetivo principal de este estudio es **analizar la influencia de las rutinas matutinas en la productividad y el estado de ánimo de las personas**.  
-A partir de los datos recolectados, se busca identificar patrones y correlaciones que permitan comprender qué hábitos se asocian con un mejor rendimiento o bienestar general.
+Para ello, se trabaja con el conjunto de datos **“Morning Routine Productivity Dataset”**, que contiene información de diversas personas sobre sus habitos matutinos, ejercicio físico, sueño, tipo de desayuno y productividad.
 
 ---
 
-# Análisis estadístico
+# 2. Objetivo
+
+El objetivo principal de este estudio es **analizar la influencia de las rutinas matutinas en la productividad y el estado de animo de las personas**.  
+A partir de los datos recolectados, se busca identificar patrones y correlaciones que permitan comprender qué habitos se asocian con un mejor rendimiento o bienestar general.
+
+---
+
+# 3. Analisis estadístico
 
 ## 3.1 Distribución de tipos de desayuno
 
-Antes de analizar la productividad, se estudió la **distribución de los distintos tipos de desayuno** declarados por los participantes. Este gráfico permite observar la preferencia general en las comidas matutinas, las cuales pueden tener un impacto directo en los niveles de energía y concentración.
+Antes de analizar la productividad, se estudió la **distribución de los distintos tipos de desayuno** declarados por los participantes. Este grafico permite observar la preferencia general en las comidas matutinas, las cuales pueden tener un impacto directo en los niveles de energía y concentración.
 
 
 
@@ -134,18 +134,18 @@ grafico_dona <- ggplot(datos_dona, aes(x = tamano_agujero, y = valor, fill = Bre
   # Añadir un título
   labs(title = "  Distribucion de tipos de desayuno")
 
-# Mostrar el gráfico
+# Mostrar el grafico
 print(grafico_dona)
 
 
 ```
 
-### Análisis:
-El gráfico de dona muestra la proporción de cada tipo de desayuno en la muestra. Se observan tendencias hacia ciertos tipos de desayuno más populares (por ejemplo, los saludables o equilibrados), lo cual puede reflejar una conciencia general sobre la importancia de una buena alimentación matutina. Por otro lado, los desayunos ausentes o poco nutritivos suelen representar un menor porcentaje, lo que podría asociarse con menores niveles de productividad en estudios posteriores.
+### 3.1.1 Analisis:
+El grafico de dona muestra la proporción de cada tipo de desayuno en la muestra. Se observan tendencias hacia ciertos tipos de desayuno mas populares (por ejemplo, los saludables o equilibrados), lo cual puede reflejar una conciencia general sobre la importancia de una buena alimentación matutina. Por otro lado, los desayunos ausentes o poco nutritivos suelen representar un menor porcentaje.
 
-## 3.2 Actividades físicas más frecuentes
+## 3.2 Actividades físicas mas frecuentes
 
-El siguiente gráfico muestra una nube de palabras con las actividades físicas más mencionadas por los encuestados. Las palabras más grandes representan los ejercicios más frecuentes.
+El siguiente grafico muestra una nube de palabras con las actividades físicas mas mencionadas por los encuestados. Las palabras mas grandes representan los ejercicios mas frecuentes.
 
 ```{r}
 data <- datos%>%
@@ -157,51 +157,61 @@ wordcloud2(
 
 ```
 
-### Análisis:
-Las actividades más comunes tienden a ser aquellas de fácil acceso y bajo costo, como caminar, correr o realizar yoga. La prevalencia de estas prácticas sugiere que una gran parte de la población considera el ejercicio como un componente relevante de su rutina diaria. El tamaño de cada palabra ilustra la frecuencia, lo que ayuda a visualizar rápidamente cuáles son las más practicadas.
+### 3.2.1 Analisis:
+Las actividades mas comunes tienden a ser aquellas de facil acceso y bajo costo, como caminar, correr o realizar yoga. La prevalencia de estas practicas sugiere que una gran parte de la población considera el ejercicio como un componente relevante de su rutina diaria. El tamaño de cada palabra ilustra la frecuencia, lo que ayuda a visualizar rapidamente cuales son las mas practicadas.
 
-## 3.3 Distribución de minutos de ejercicio
+## 3.3 Productividad según alimentación
 
-Se analizó la cantidad de minutos que las personas dedican al ejercicio diario. Este gráfico de histograma muestra cómo se distribuyen dichos valores en la muestra, junto con una curva normal ajustada.
+Se compararon los niveles productivos de los individuos con sus desayunos habituales.
 
 ```{r}
-x <- datos$Exercise..mins.
+# Cargar la librería
+library(ggridges)
 
-# Histograma de densidad
-hist(x, breaks = 20, probability = TRUE,
-     main = "Distribucion de minutos de ejercicio",
-     xlab = "Exercise (mins)", col = "lightgray")
+# Cargar los datos
+datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
-# Agregar la curva normal ajustada
-curve(dnorm(x, mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)),
-      col = "blue", lwd = 2, add = TRUE)
+# Crear el gráfico de crestas
+ggplot(datos, aes(x = Productivity.Score..1.10., y = Breakfast.Type, fill = Breakfast.Type)) +
+  geom_density_ridges() +
+  labs(
+    title = "Distribución de la productividad por tipo de desayuno",
+    x = "Puntuación de productividad (1-10)",
+    y = "Tipo de desayuno"
+  ) +
+  theme_minimal()
+
+
+
 ```
 
-### Análisis:
-El histograma revela que la mayoría de los participantes dedica entre 20 y 60 minutos diarios al ejercicio, aunque existen algunos valores atípicos con duraciones mucho mayores. La curva normal permite comparar la distribución empírica con una distribución teórica, evidenciando cierta dispersión y asimetría. Esto indica que el hábito del ejercicio varía significativamente entre las personas, lo cual puede afectar de manera diferente la productividad individual.
+### 3.3.1 Analisis:
+El grafico de cresta muestra un aúmento en los niveles de productividad con desayunos más ligeros y balaceados como el Avocado toast, Yogurt & Berries o Fruit Bowl. Mientras que con los desayunos más pesados la puntuación de productividad es más dispersa. Mientras que saltarse el desayuno o tomar unicamente cafe refleja niveles de producción más bajos.
 
-## 3.4 Ejercicio físico según estado de ánimo
+## 3.4 Ejercicio físico según estado de animo
 
-El gráfico de violín permite observar cómo varía la cantidad de ejercicio según el estado de ánimo reportado. Cada violín representa la distribución de minutos de ejercicio dentro de cada categoría emocional.
+El grafico de violín permite observar cómo varía la cantidad de ejercicio según el estado de animo reportado. Cada violín representa la distribución de minutos de ejercicio dentro de cada categoría emocional.
 
 ```{r}
 ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
   geom_violin(trim = FALSE) +  # Muestra la densidad de los datos
-  labs(title = "Distribucion de minutos de ejercicio por estado de animo",
-       x = "Estado de Animo",
+  labs(title = "Distribución de minutos de ejercicio por estado de animo",
+       x = "Estado de animo",
        y = "Minutos de Ejercicio") +
   theme_minimal()
 
 ```
 
-## Análisis:
-Se puede observar que los estados de ánimo más positivos, como “feliz” o “motivado”, tienden a asociarse con una mayor cantidad de minutos de ejercicio. Por el contrario, los estados emocionales negativos presentan una mediana más baja y mayor dispersión, lo que sugiere una menor constancia o motivación para realizar actividad física. Esto respalda la hipótesis de que el bienestar emocional y la actividad física están estrechamente vinculados.
+### 3.4.1 Analisis:
+Se puede observar que los estados de animo mas positivos, como “feliz” o “motivado”, tienden a asociarse con una mayor cantidad de minutos de ejercicio. Por el contrario, los estados emocionales negativos presentan una mediana mas baja y mayor dispersión, lo que sugiere una menor constancia o motivación para realizar actividad física. Esto respalda la hipótesis de que el bienestar emocional y la actividad física estan estrechamente vinculados.
 
-### 3.5 Productividad según horas de sueño
+## 3.5 Productividad según horas de sueño
 
 Finalmente, se analizó la relación entre las horas de sueño y el puntaje de productividad. Se graficó la productividad promedio en función de las horas dormidas, incluyendo una línea de tendencia lineal.
 
 ```{r}
+correlacion <- cor(datos$Sleep.Duration..hrs., datos$Productivity.Score..1.10., use = "complete.obs", method = "pearson")
+
 data <- datos %>%
   group_by(Sleep.Duration..hrs.) %>%
   summarise(promedio_productividad = mean(Productivity.Score..1.10., na.rm = TRUE))
@@ -209,25 +219,45 @@ data <- datos %>%
 ggplot(data, aes(x = Sleep.Duration..hrs., y = promedio_productividad)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
+   annotate("text", 
+           x = max(data$Sleep.Duration..hrs.) * 0.6,   
+           y = max(data$promedio_productividad) * 1,
+           label = paste("r =", round(correlacion, 5)), 
+           size = 5, 
+           color = "blue") +
   labs(
     title = "Productividad promedio por horas de suenio",
     x = "Horas de suenio",
     y = "Productividad promedia"
   ) +
   theme_minimal() 
+
 ```
 
-### Análisis:
-La relación positiva observada indica que una mayor duración del sueño suele asociarse con un mayor puntaje de productividad. Sin embargo, el incremento no es lineal en todos los casos, ya que dormir en exceso también puede reducir la eficiencia. El rango de sueño óptimo se ubica aproximadamente entre 7 y 8 horas, donde se alcanza el máximo nivel promedio de productividad.
+### 3.5.1 Analisis:
+El coeficiente de correlación de Pearson (r = 0.795) indica una relación lineal positiva fuerte entre las horas de sueño y el nivel de productividad. Esto significa que, en general, a mayor cantidad de horas dormidas, mayor productividad promedio.
 
-# Conclusión
 
-El análisis permite concluir que las rutinas matutinas influyen de forma significativa en la productividad y el estado emocional de las personas. Los principales hallazgos son:
+$$
+r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}
+         {\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
+$$
 
-Los desayunos equilibrados y regulares se relacionan con mayores niveles de productividad.
+La línea de tendencia lineal del gráfico refuerza esta interpretación: muestra una pendiente ascendente que evidencia cómo el rendimiento tiende a mejorar conforme aumenta el descanso. Sin embargo, el valor de r no llega a 1, lo que sugiere que, aunque el sueño influye de manera considerable, no es el único factor determinante en la productividad.
 
-La actividad física frecuente se asocia con mejores estados de ánimo y mayor energía.
 
-Un descanso adecuado, cercano a las 7–8 horas diarias, se correlaciona positivamente con la productividad.
+# 4. Conclusión
 
-En conjunto, estos resultados refuerzan la importancia de mantener una rutina matutina saludable que combine descanso, alimentación equilibrada y actividad física regular.
+El análisis de los datos demuestra que los hábitos matutinos tienen una incidencia directa en la productividad y el bienestar emocional de las personas. Los resultados obtenidos reflejan que una rutina equilibrada, compuesta por un desayuno nutritivo, actividad física moderada y un descanso adecuado, se asocia con un mayor rendimiento diario.
+
+En particular, los individuos que consumen desayunos balanceados —como los que incluyen frutas, yogur o palta— tienden a reportar niveles de productividad más altos y una distribución más concentrada de puntajes positivos. Por otro lado, quienes omiten el desayuno o consumen alimentos poco nutritivos presentan una mayor dispersión en sus niveles de desempeño.
+
+Asimismo, el ejercicio físico aparece como un factor clave en el estado de ánimo, observándose que las personas con emociones positivas realizan más minutos de actividad física, lo que sugiere una relación bidireccional entre bienestar emocional y movimiento corporal.
+
+Finalmente, la relación entre las horas de sueño y la productividad confirma una asociación lineal positiva fuerte: Esto indica que el descanso no solo favorece la concentración, sino que también potencia el impacto de otros hábitos saludables.
+
+En conjunto, los resultados enfatizan que la productividad no depende de un único factor, sino de la interacción entre sueño, alimentación y ejercicio. Fomentar rutinas matutinas conscientes y sostenibles puede, por tanto, ser una estrategia efectiva para mejorar tanto el desempeño laboral o académico como el bienestar general de las personas.
+
+# 5. Bibliografía
+
+Los datos fueron obtenidos de la base:“Morning Routine Productivity Datase" de "https://www.kaggle.com/"
