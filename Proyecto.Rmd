@@ -39,13 +39,9 @@ datos <- read.csv("Morning_Routine_Productivity_Dataset.csv")
 
 ```
 
-# Caratula
+**Institución:** Instituto Nacional Superior del Profesorado Tecnico (INSPT)
 
-**Materia:** Probabilidad Aplicada  
-**Autores:** Santiago Longo y Rocco Fabro  
-**Fecha:** 25 de septiembre de 2025  
-**Institución:** Instituto Nacional Superior del Profesorado Tecnico  
-**Profesor:** Marisa Casparian
+**Profesora:** Marisa Casparian
 
 ---
 
@@ -203,7 +199,7 @@ ggplot(datos, aes(x = Mood, y = Exercise..mins., fill = Mood)) +
 ```
 
 ### 3.4.1 Analisis:
-Se puede observar que los estados de animo mas positivos, como “feliz” o “motivado”, tienden a asociarse con una mayor cantidad de minutos de ejercicio. Por el contrario, los estados emocionales negativos presentan una mediana mas baja y mayor dispersión, lo que sugiere una menor constancia o motivación para realizar actividad física. Esto respalda la hipótesis de que el bienestar emocional y la actividad física estan estrechamente vinculados.
+Se puede observar que los estados de animo mas positivos, como “feliz” o “motivado”, tienden a asociarse con una mayor cantidad de minutos de ejercicio. Por el contrario, los estados emocionales negativos presentan una mediana mas baja y mayor dispersión, lo que sugiere una menor constancia o motivación para realizar actividad física. Esto respalda el pensamiento comun de que el bienestar emocional y la actividad física estan estrechamente vinculados.
 
 ## 3.5 Productividad según horas de sueño
 
@@ -248,7 +244,7 @@ La línea de tendencia lineal del gráfico refuerza esta interpretación: muestr
 
 # 4. Conclusión
 
-El análisis de los datos demuestra que los hábitos matutinos tienen una incidencia directa en la productividad y el bienestar emocional de las personas. Los resultados obtenidos reflejan que una rutina equilibrada, compuesta por un desayuno nutritivo, actividad física moderada y un descanso adecuado, se asocia con un mayor rendimiento diario.
+En conclusión, el objetivo de este estudio fue analizar la relación entre las rutinas matutinas, la productividad y el estado de ánimo. Y luego de examinar los datos obtenidos, se observa una clara influencia del tipo de rutina en el rendimiento y el bienestar de las personas. Los resultados muestran que quienes mantienen hábitos equilibrados, como desayunar bien, hacer algo de actividad física y descansar lo suficiente, tienden a ser más productivos y a mantener un mejor estado de ánimo durante el día.
 
 En particular, los individuos que consumen desayunos balanceados —como los que incluyen frutas, yogur o palta— tienden a reportar niveles de productividad más altos y una distribución más concentrada de puntajes positivos. Por otro lado, quienes omiten el desayuno o consumen alimentos poco nutritivos presentan una mayor dispersión en sus niveles de desempeño.
 
